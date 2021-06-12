@@ -1,0 +1,42 @@
+package com.prototype.auditchecklist.service;
+
+import java.util.ArrayList;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.stereotype.Service;
+
+import com.prototype.auditchecklist.model.QuestionsEntity;
+
+@Service
+public class checklistService {
+
+	private ArrayList<QuestionsEntity> internalQuestions;
+	private ArrayList<QuestionsEntity> soxQuestions;
+	
+	@PostConstruct
+	public void init() {
+		internalQuestions=new ArrayList<>();
+		soxQuestions=new ArrayList<>();
+		QuestionsEntity q1=new QuestionsEntity(1,"internal","Have all Change requests followed SDLC before PROD move?","no");
+		QuestionsEntity q2=new QuestionsEntity(2,"internal","Have all Change requests been approved by the application owner?","yes");
+		QuestionsEntity q3=new QuestionsEntity(3,"internal","Are all artifacts like CR document, Unit test cases available?","yes");
+		QuestionsEntity q4=new QuestionsEntity(4,"internal","Is the SIT and UAT sign-off available?","no");
+		QuestionsEntity q5=new QuestionsEntity(5,"internal","Is data deletion from the system done with application owner approval?","yes");
+		
+		internalQuestions.add(q1);
+		internalQuestions.add(q2);
+		internalQuestions.add(q3);
+		internalQuestions.add(q4);
+		internalQuestions.add(q5);
+		
+		QuestionsEntity q11=new QuestionsEntity(1,"sox","Have all Change requests followed SDLC before PROD move?","yes");
+		QuestionsEntity q12=new QuestionsEntity(2,"sox","Have all Change requests been approved by the application owner?","no");
+		QuestionsEntity q13=new QuestionsEntity(3,"sox","For a major change, was there a database backup taken before and after PROD move?","no");
+		QuestionsEntity q14=new QuestionsEntity(4,"sox","Has the application owner approval obtained while adding a user to the system?","yes");
+		QuestionsEntity q15=new QuestionsEntity(5,"sox","Is data deletion from the system done with application owner approval?","yes");
+		
+		
+	}
+	
+}

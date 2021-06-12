@@ -1,0 +1,28 @@
+package com.prototype.auditseverity.model;
+
+import java.util.Date;
+
+import javax.annotation.PostConstruct;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+public class AuditDetails {
+
+	private int auditId;
+	private String auditType;
+	private Date auditDate;
+	
+	@PostConstruct
+	public void init(){
+		this.auditDate=new Date();
+	}
+}

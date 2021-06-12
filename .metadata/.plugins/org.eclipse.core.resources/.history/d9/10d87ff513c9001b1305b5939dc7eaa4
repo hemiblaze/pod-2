@@ -1,0 +1,24 @@
+package com.prototype.auditchecklist.service;
+
+import java.util.ArrayList;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.stereotype.Service;
+
+import com.prototype.auditchecklist.model.QuestionsEntity;
+
+@Service
+public class checklistService {
+
+	private ArrayList<QuestionsEntity> internalQuestions;
+	
+	@PostConstruct
+	public void init() {
+		QuestionsEntity q1=new QuestionsEntity(1,"internal","Have all Change requests followed SDLC before PROD move?","no");
+		QuestionsEntity q2=new QuestionsEntity(2,"internal","Have all Change requests been approved by the application owner?","yes");
+		QuestionsEntity q3=new QuestionsEntity(3,"internal","Are all artifacts like CR document, Unit test cases available?","yes");
+		
+	}
+	
+}

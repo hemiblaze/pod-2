@@ -1,0 +1,13 @@
+package com.prototype.auditchecklist.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.prototype.auditchecklist.model.QuestionsEntity;
+
+public interface ChecklistRepository extends JpaRepository<QuestionsEntity, Integer>{
+	
+	List<QuestionsEntity> findByAuditType(String auditType);
+
+}

@@ -1,0 +1,5 @@
+package com.prototype.auditchecklist.controller;
+
+public class QuestionsEntity {
+
+}

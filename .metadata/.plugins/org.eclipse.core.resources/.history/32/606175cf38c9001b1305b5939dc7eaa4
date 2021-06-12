@@ -1,0 +1,22 @@
+package com.prototype.auditseverity.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.prototype.auditseverity.model.AuditRequest;
+import com.prototype.auditseverity.model.AuditResponse;
+
+@RestController
+public class SeverityController {
+
+	@GetMapping("/execution-status")
+	public AuditResponse getExceutionStatus(@RequestBody AuditRequest request) {
+		int internalMin=3;
+		int soxMin=1;
+		String auditType=request.getAuditDetails().getAuditType();
+		if(auditType.equalsIgnoreCase("internal")) {
+			
+		}
+	}
+}

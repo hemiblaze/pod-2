@@ -1,0 +1,6 @@
+package com.prototype.auditseverity.repository;
+
+@Repository
+public class AuditDetailRepository extends JpaRepository<AuditDetailModel, Integer>{
+
+}

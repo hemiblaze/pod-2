@@ -1,0 +1,9 @@
+package com.prototype.auditseverity.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.prototype.auditseverity.model.AuditResponse;
+
+public interface ResponseRepository extends JpaRepository<AuditResponse, Integer>{
+
+}

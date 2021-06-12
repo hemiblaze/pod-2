@@ -1,0 +1,76 @@
+package com.prototype.auditseverity.controller;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.prototype.auditseverity.model.AuditRequest;
+import com.prototype.auditseverity.model.AuditResponse;
+import com.prototype.auditseverity.model.QuestionsEntity;
+import com.prototype.auditseverity.service.RequestResponseService;
+
+@RestController
+public class SeverityController {
+	
+	@Autowired
+	RequestResponseService requestResponseService;
+
+	@PostMapping("/execution-status")
+	public AuditResponse getExceutionStatus(@RequestBody AuditRequest request) {
+		int internalMin=3;
+		int soxMin=1;
+		int noNos=0;
+		if(!request.equals(null))
+			requestResponseService.saveRequest(request);
+		AuditResponse response=null;
+		ArrayList<QuestionsEntity> questions=getAllQuestions();
+		String auditType=request.getAuditDetails().getAuditType();
+		for(QuestionsEntity qs:questions) {
+			if(qs.getAuditType().equalsIgnoreCase(auditType)&&qs.getResponse()=="no") {
+				noNos++;
+			}
+		}
+		if(auditType.equalsIgnoreCase("internal")&&noNos<=internalMin) {
+			response=new AuditResponse(1,"green","no action required");
+		}else if(auditType.equalsIgnoreCase("internal")&&noNos>internalMin) {
+			response=new AuditResponse(2,"red","Action to be taken in 2 weeks");
+		}else if(auditType.equalsIgnoreCase("sox")&&noNos<=soxMin) {
+			response=new AuditResponse(3,"green","no action needed");
+		}else if(auditType.equalsIgnoreCase("sox")&&noNos>soxMin) {
+			response=new AuditResponse(4,"red","Action to be taken in 1 weeks");
+		}
+		requestResponseService.saveResponse(response);
+		return response;
+	}
+	public static ArrayList<QuestionsEntity> getAllQuestions(){
+		ArrayList<QuestionsEntity> questions=new ArrayList<QuestionsEntity>();
+		QuestionsEntity q1=new QuestionsEntity(1,"internal","Have all Change requests followed SDLC before PROD move?","no");
+		QuestionsEntity q2=new QuestionsEntity(2,"internal","Have all Change requests been approved by the application owner?","yes");
+		QuestionsEntity q3=new QuestionsEntity(3,"internal","Are all artifacts like CR document, Unit test cases available?","yes");
+		QuestionsEntity q4=new QuestionsEntity(4,"internal","Is the SIT and UAT sign-off available?","no");
+		QuestionsEntity q5=new QuestionsEntity(5,"internal","Is data deletion from the system done with application owner approval?","yes");
+		
+		QuestionsEntity q11=new QuestionsEntity(6,"sox","Have all Change requests followed SDLC before PROD move?","no");
+		QuestionsEntity q12=new QuestionsEntity(7,"sox","Have all Change requests been approved by the application owner?","no");
+		QuestionsEntity q13=new QuestionsEntity(8,"sox","For a major change, was there a database backup taken before and after PROD move?","no");
+		QuestionsEntity q14=new QuestionsEntity(9,"sox","Has the application owner approval obtained while adding a user to the system?","yes");
+		QuestionsEntity q15=new QuestionsEntity(10,"sox","Is data deletion from the system done with application owner approval?","yes");
+		
+		questions.add(q1);
+		questions.add(q2);
+		questions.add(q11);
+		questions.add(q12);
+		questions.add(q3);
+		questions.add(q4);
+		questions.add(q5);
+		questions.add(q13);
+		questions.add(q14);
+		questions.add(q15);
+		return questions;
+
+	}
+}

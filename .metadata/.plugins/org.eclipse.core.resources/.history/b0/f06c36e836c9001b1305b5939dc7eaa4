@@ -1,0 +1,5 @@
+package com.prototype.auditseverity.model;
+
+public class AuditResponse {
+
+}

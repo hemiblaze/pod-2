@@ -1,0 +1,26 @@
+package com.prototype.auditseverity.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.prototype.auditseverity.model.AuditDetails;
+import com.prototype.auditseverity.model.AuditRequest;
+import com.prototype.auditseverity.repository.AuditDetailRepository;
+import com.prototype.auditseverity.repository.RequestRepository;
+import com.prototype.auditseverity.repository.ResponseRepository;
+
+public class RequestResponseService {
+
+	@Autowired
+	AuditDetailRepository auditDetailRepository;
+	
+	@Autowired
+	RequestRepository  requestRepository;
+	
+	@Autowired
+	ResponseRepository responseRepository;
+	
+	
+	public AuditRequest saveRequest(AuditRequest request) {
+		return requestRepository.save(request);
+	}
+}

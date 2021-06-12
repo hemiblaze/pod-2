@@ -1,0 +1,5 @@
+package com.prototype.auditseverity.pojo;
+
+public class AuditBenchmark {
+
+}

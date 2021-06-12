@@ -1,0 +1,23 @@
+package com.prototype.auditseverity.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@Entity
+@Table(name="auditrequest")
+public class AuditRequest {
+
+	private int requestId;
+	private AuditDetails auditDetails;
+	private String projectName;
+	private String managerName;
+	private String ownerName;
+}

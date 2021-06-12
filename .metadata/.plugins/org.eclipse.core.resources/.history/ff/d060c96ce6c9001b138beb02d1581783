@@ -1,0 +1,5 @@
+package com.prototype.auditseverity.repository;
+
+public interface ResponseRepository {
+
+}

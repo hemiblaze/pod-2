@@ -1,0 +1,13 @@
+package com.prototype.auditchecklist.model;
+
+
+public class QuestionsEntity {
+
+	
+	private String auditType;
+	private String questions;
+	private String response;
+	
+	
+
+}
