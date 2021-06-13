@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prototype.auditchecklist.model.QuestionsEntity;
+import com.prototype.auditchecklist.pojo.AuditType;
+import com.prototype.auditchecklist.service.TokenService;
 import com.prototype.auditchecklist.service.checklistService;
 
 @RestController
@@ -21,29 +24,47 @@ public class checklistController {
 	@Autowired
 	checklistService service;
 	
-	@GetMapping("/checklist/{audit-type}")
-	public ResponseEntity<List<QuestionsEntity>> getQuestions(@PathVariable("audit-type") String audit_type){
+	@Autowired
+	TokenService tokenService;
+	
+	@PostMapping("/checklist")
+	public ResponseEntity<?> getQuestions(@RequestHeader(name = "Authorization",required = true)String token,@RequestBody AuditType auditType){
 		List<QuestionsEntity> questionsList = new ArrayList<>();
-		ResponseEntity<List<QuestionsEntity>> responseEntity;
-		if(audit_type.equals("Internal")||audit_type.equals("SOX")) {
-			questionsList=service.getQuestions(audit_type);
-		 responseEntity = new ResponseEntity<List<QuestionsEntity>>(questionsList,HttpStatus.OK);
-		 return responseEntity;
+		ResponseEntity<?> responseEntity;
+		if(tokenService.checkTokenValidity(token)) {
+			System.out.println("In checklist" + auditType.getAuditType());
+			try {
+			questionsList = service.getQuestions(auditType.getAuditType());
+			}catch(IndexOutOfBoundsException e) {
+				responseEntity= new ResponseEntity<String>("invalid audit type",HttpStatus.INTERNAL_SERVER_ERROR);
+				return responseEntity;
+			}
+			responseEntity = new ResponseEntity<List<QuestionsEntity>>(questionsList,HttpStatus.OK);
+			return responseEntity;
+			
 		}
-		List<QuestionsEntity> response=new ArrayList<>();
-		response.add(new QuestionsEntity());
-		responseEntity = new ResponseEntity<List<QuestionsEntity>>(response,HttpStatus.BAD_REQUEST);
-		return responseEntity;
-		
+		else {			
+			responseEntity= new ResponseEntity<String>("token expired",HttpStatus.FORBIDDEN);
+			return responseEntity;
+		}
 			
 		
 	}
 	@PostMapping("/save-response")
-	public ResponseEntity<?> saveRespose(@RequestBody List<QuestionsEntity> responses){
+	public ResponseEntity<?> saveRespose(@RequestHeader(name = "Authorization",required = true)String token,@RequestBody List<QuestionsEntity> questionsResponse){
+	
+		List<QuestionsEntity> questionsList = new ArrayList<>();
 		ResponseEntity<?> responseEntity;
-		 responseEntity = new ResponseEntity<List<QuestionsEntity>>(service.saveResponse(responses),HttpStatus.OK);
-		return responseEntity;
+		if(tokenService.checkTokenValidity(token)) {
+			questionsList = service.saveResponse(questionsResponse);
+			responseEntity = new ResponseEntity<List<QuestionsEntity>>(questionsList,HttpStatus.OK);
+			return responseEntity;
+		}
+		else {
+			responseEntity= new ResponseEntity<String>("token expired",HttpStatus.FORBIDDEN);
+			return responseEntity;
+		}
 	}
 	
-
+		
 }
