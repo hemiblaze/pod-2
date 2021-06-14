@@ -48,6 +48,7 @@ public class SeverityController {
 
 			}
 			AuditResponse response = null;
+			System.out.println("request "+request.toString());
 			AuditType auditType = new AuditType(request.getAuditDetails().getAuditType());
 			questionsList = requestResponseService.getAllQuestions(token, auditType).getBody();
 

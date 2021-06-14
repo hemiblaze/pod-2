@@ -40,6 +40,7 @@ public class checklistController {
 				return responseEntity;
 			}
 			responseEntity = new ResponseEntity<List<QuestionsEntity>>(questionsList,HttpStatus.OK);
+			System.out.println(questionsList);
 			return responseEntity;
 			
 		}
