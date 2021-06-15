@@ -9,7 +9,7 @@ import com.prototype.auditchecklist.model.QuestionsEntity;
 import com.prototype.auditchecklist.repository.ChecklistRepository;
 
 @Service
-public class ChecklistService {
+public class checklistService {
 
 	@Autowired
 	ChecklistRepository repository;

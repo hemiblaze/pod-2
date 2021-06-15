@@ -26,7 +26,7 @@ public class ChecklistServiceTest {
 	ChecklistRepository questionsRespository;
 	
 	@InjectMocks
-	ChecklistService questionsService;
+	checklistService questionsService;
 
 	@Test
 	public void testGetQuestionsList() throws IndexOutOfBoundsException{

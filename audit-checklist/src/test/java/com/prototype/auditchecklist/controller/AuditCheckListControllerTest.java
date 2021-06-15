@@ -18,13 +18,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.prototype.auditchecklist.controller.ChecklistController;
+import com.prototype.auditchecklist.controller.checklistController;
 import com.prototype.auditchecklist.feignclients.AuthClient;
 import com.prototype.auditchecklist.model.QuestionsEntity;
 import com.prototype.auditchecklist.pojo.AuditType;
 import com.prototype.auditchecklist.repository.ChecklistRepository;
 import com.prototype.auditchecklist.service.TokenService;
-import com.prototype.auditchecklist.service.ChecklistService;
+import com.prototype.auditchecklist.service.checklistService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,13 +42,13 @@ public class AuditCheckListControllerTest {
 	AuditType auditType;
 	
 	@Mock
-	ChecklistService questionsService;
+	checklistService questionsService;
 	
 	@Mock
 	Environment env;
 	
 	@InjectMocks
-	ChecklistController auditCheckListController;
+	checklistController auditCheckListController;
 	
 	@Mock
 	ChecklistRepository questionsRepository;
