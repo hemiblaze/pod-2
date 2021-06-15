@@ -20,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomErrorResponseTest {
 
-	
 	private CustomErrorResponse customErrorResponse;
 	
 	@Before
@@ -52,23 +51,31 @@ public class CustomErrorResponseTest {
 		customErrorResponse.setStatus(HttpStatus.OK);
 		assertEquals(HttpStatus.OK, customErrorResponse.getStatus());
     }
-
+	/**
+	    * to test the getter setter of message
+	    */
 	@Test
 	public void testGetMessage() {
 		customErrorResponse.setMessage("Message");
 		assertEquals("Message", customErrorResponse.getMessage());
 	}
-	
+	/**
+	    * to test the getter setter of LocalDateTime
+	    */	
 	@Test
 	public void testSetLocalDateTime() {
         customErrorResponse.setTimestamp(LocalDateTime.now());
     }
-	  
+	  /**
+	   *  to test the getter setter of Status
+	   */	  
 	@Test
 	public void testSetStatus() {
          customErrorResponse.setStatus(HttpStatus.OK);
     }
-	
+	/**
+	  *  to test the getter setter of message
+	  */	
 	@Test
 	public void testSetMessage() {
          customErrorResponse.setMessage("Message");

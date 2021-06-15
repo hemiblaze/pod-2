@@ -1,5 +1,7 @@
 package com.prototype.auditbenchmark.exception;
-
+/**
+ * This class tests the GlobalExceptionHandler class
+ */
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

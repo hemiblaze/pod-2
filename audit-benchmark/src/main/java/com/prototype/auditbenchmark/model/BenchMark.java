@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+/**
+ * 
+ * This POJO class is used to handle audit type and acceptable no of NO allowed in particular benchmark
+ */
 
 @Data
 @NoArgsConstructor

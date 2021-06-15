@@ -33,7 +33,9 @@ public class TokenServiceTest {
 	
 	@Mock
 	ResponseEntity<AuthResponse> authResponseEntity;
-	
+	/**
+	 * this methods checks validity of token service and see if it is working or not
+	 */	
 	@Test
 	public void testTokenValidityWhenTokenIsValid() {
 		authResponseEntity = new ResponseEntity<AuthResponse>(new AuthResponse(null, true),HttpStatus.OK);
@@ -41,13 +43,17 @@ public class TokenServiceTest {
         assertEquals(true, tokenService.checkTokenValidity("token"));
 
 	}
-	
+	/**
+	 * This method checks if NullPOinter Exceptiomn is thrown or not
+	 */	
 	@Test
 	public void testTokenValidityWhenTokenNullPointerException() {
          assertThrows(NullPointerException.class,() -> tokenService.checkTokenValidity("token"));
 
 	}
-	
+	/**
+	 * This methods checks acess is forbidden or not when token is invalid
+	 */
 	@Test
 	public void testTokenValidityWhenTokenIsInvalid() {
 		authResponseEntity = new ResponseEntity<AuthResponse>(new AuthResponse(null,false),HttpStatus.FORBIDDEN);

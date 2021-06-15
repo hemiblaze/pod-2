@@ -12,12 +12,27 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.prototype.auditbenchmark.pojo.CustomErrorResponse;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * This class handles all the exceptions. Whenever an exception occurs
+ * anywhere then first it will be checked whether there is {@link GlobalErrorHandler} 
+ * declared or not. This has an annotation
+ * RestControllerAdvice so it works for all controllers and classes.
+ *          
+ * @see ResponseEntityExceptionHandler
+ *
+ */
 
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
+	/**
+	 * 
+	 * @param ex
+	 * @return ResponseEntity<CustomErrorResponse>
+	 * 
+	 * This method is to Handle Exception when Feign client  is not  working
+	 */
 
 
 	@ExceptionHandler(FeignProxyException.class)

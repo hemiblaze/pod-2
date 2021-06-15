@@ -16,12 +16,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.prototype.auditbenchmark.feignclient.AuthClient;
 import com.prototype.auditbenchmark.model.BenchMark;
 import com.prototype.auditbenchmark.service.TokenService;
+/**
+ * 
+ * Test class for BenchmarkController 
+ */
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration 
 public class BenchMarkControllerTest {
 
-
+	/**
+	 * Mocking all required objects
+	 */
 	@Mock
 	AuthClient authClient;
 		
@@ -33,7 +39,9 @@ public class BenchMarkControllerTest {
 	
 	@InjectMocks
 	BenchMarkController benchmarkcontroller;
-	
+	/**
+	 * Testing the methods
+	 */	
     @Test
 	public void testGetBenchmark() {
 		List<BenchMark> benchmarkList = new ArrayList<>();

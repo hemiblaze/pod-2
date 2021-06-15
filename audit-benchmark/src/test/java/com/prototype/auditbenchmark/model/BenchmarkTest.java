@@ -1,5 +1,7 @@
 package com.prototype.auditbenchmark.model;
-
+/**
+ * test class for AuditBenchmark
+ */
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;

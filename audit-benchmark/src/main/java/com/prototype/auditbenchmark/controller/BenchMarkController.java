@@ -12,12 +12,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.prototype.auditbenchmark.model.BenchMark;
 import com.prototype.auditbenchmark.service.TokenService;
-
+/**
+ * 
+ * This class is handling all the end points for returning benchmark of acceptable no of NO's for a particular
+ * audit type to  Audit Severity microservice. 
+ * 
+ * @see tokenService is to check token with auth microservice
+ *
+ */
 @RestController
 public class BenchMarkController {
 
 	@Autowired
 	TokenService tokenService;
+
+	/**
+	 * 
+	 * @param token - used to verfiy the token with auth service
+	 * @return response entity which is either List of questions or error caused in application
+	 */
 
 	@GetMapping("/audit-benchmark")
 	public ResponseEntity<?> getBenchMark(@RequestHeader("Authorization") String token) {
