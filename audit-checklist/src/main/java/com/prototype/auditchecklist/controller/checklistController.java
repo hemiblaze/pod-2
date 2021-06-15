@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.prototype.auditchecklist.model.QuestionsEntity;
 import com.prototype.auditchecklist.pojo.AuditType;
 import com.prototype.auditchecklist.service.TokenService;
-import com.prototype.auditchecklist.service.ChecklistService;
+import com.prototype.auditchecklist.service.checklistService;
 
 @RestController
-public class ChecklistController {
+public class checklistController {
 	
 	@Autowired
-	ChecklistService service;
+	checklistService service;
 	
 	@Autowired
 	TokenService tokenService;
-	
+
 	@PostMapping("/checklist")
 	public ResponseEntity<?> getQuestions(@RequestHeader(name = "Authorization",required = true)String token,@RequestBody AuditType auditType){
 		List<QuestionsEntity> questionsList = new ArrayList<>();
