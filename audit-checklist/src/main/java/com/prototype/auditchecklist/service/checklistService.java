@@ -9,7 +9,7 @@ import com.prototype.auditchecklist.model.QuestionsEntity;
 import com.prototype.auditchecklist.repository.ChecklistRepository;
 
 @Service
-public class checklistService {
+public class ChecklistService {
 
 	@Autowired
 	ChecklistRepository repository;
@@ -23,6 +23,7 @@ public class checklistService {
 			return repository.findByAuditType(auditType);
 		}
 	}
+	
 	public List<QuestionsEntity> saveResponse(List<QuestionsEntity> responses){
 		return repository.saveAll(responses);
 	}

@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.prototype.auditchecklist.model.QuestionsEntity;
 import com.prototype.auditchecklist.pojo.AuditType;
 import com.prototype.auditchecklist.service.TokenService;
-import com.prototype.auditchecklist.service.checklistService;
+import com.prototype.auditchecklist.service.ChecklistService;
 
 @RestController
-public class checklistController {
+public class ChecklistController {
 	
 	@Autowired
-	checklistService service;
+	ChecklistService service;
 	
 	@Autowired
 	TokenService tokenService;
@@ -45,7 +45,7 @@ public class checklistController {
 			
 		}
 		else {			
-			responseEntity= new ResponseEntity<String>("token expired",HttpStatus.FORBIDDEN);
+			responseEntity= new ResponseEntity<String>("the token is expired and not valid anymore",HttpStatus.FORBIDDEN);
 			return responseEntity;
 		}
 			
@@ -62,7 +62,7 @@ public class checklistController {
 			return responseEntity;
 		}
 		else {
-			responseEntity= new ResponseEntity<String>("token expired",HttpStatus.FORBIDDEN);
+			responseEntity= new ResponseEntity<String>("the token is expired and not valid anymore",HttpStatus.FORBIDDEN);
 			return responseEntity;
 		}
 	}

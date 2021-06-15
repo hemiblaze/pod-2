@@ -52,7 +52,11 @@ public class WebPortalController {
 		
 		return "login";
 	}
-	
+//	@GetMapping("/home")
+//	public String home() {
+//		return "forbidden";
+//	}
+//	
 	@PostMapping("/home")
 	public String getHome(@ModelAttribute("user") User userCredentials ,HttpServletRequest request,ModelMap map) {
 		System.out.println(userCredentials.getUserId()+" "+userCredentials.getPassword());
@@ -86,14 +90,17 @@ public class WebPortalController {
 					
 				}catch(IndexOutOfBoundsException e) {
 					if (e.getMessage().contains("invalid audit type")) {
-						return "internalServerError";
+						return "redirect:/internalServerError";
 					}
 				}
 				catch(Exception e) {
 
-					if(e.getMessage().contains("token expired"))
+					if(e.getMessage().contains("the token is expired and not valid anymore"))
 						return "forbidden";
+					else
+						return "redirect:/internalServerError";
 				}
+				
 				for(QuestionsEntity question:questions) {
 					System.out.println("questions "+question);
 					if(question.getResponse()!=null) {
@@ -113,20 +120,27 @@ public class WebPortalController {
 	public String getQuestions(@ModelAttribute("questions") Questions
 	questions,@ModelAttribute("auditType") AuditType auditType,HttpSession session,ModelMap map) {
 		ResponseEntity<?> authResponse=null;
+		boolean view=false;
 		try {
 			
 				authResponse = authClient.getValidity(session.getAttribute("token").toString());
 //				map.addAttribute("questions", questions);
 //				map.addAttribute("auditType",auditType);
+				if(questions.equals(null)) {
+					map.addAttribute("view", view);
+				}
+				else {
+					map.addAttribute("view", true);
+				}
 				
 		}
 		catch(Exception e) {
-			if(e.getMessage().contains("token expired"))
+			if(e.getMessage().contains("the token is expired and not valid anymore"))
 				return "tokenExpiredPage";
-			if(e.getMessage().contains("auth.failed"))
+			if(e.getMessage().contains("Authentication Failed. Username or Password not valid."))
 				return "authFailed";
 			
-			return "redirect:/logout";
+			return "internalServerError";
 		}
 		if(authResponse==null) {
 			return "tokenExpiredPage";
@@ -149,12 +163,12 @@ public class WebPortalController {
 
 		}
 		catch(Exception e) {
-			if(e.getMessage().contains("token expired"))
+			if(e.getMessage().contains("the token is expired and not valid anymore"))
 				return "tokenExpiredPage";
-			if(e.getMessage().contains("auth.failed"))
+			if(e.getMessage().contains("Authentication Failed. Username or Password not valid."))
 				return "authFailed";
 			
-			return "redirect:/logout";
+			return "redirect:/internalServerError";
 		}
 		if(authResponse==null || responseEntity==null) {
 			return "tokenExpiredPage";
@@ -173,13 +187,20 @@ public class WebPortalController {
 			 
 		}
 		catch(Exception e) {
-			if(e.getMessage().contains("string.token.exp"))
+			if(e.getMessage().contains("the token is expired and not valid anymore"))
 				return "tokenExpiredPage";
 
-			return "tokenExpiredPage";
+			return "redirect:/internalServerError";
 		}
 		map.addAttribute("auditResponse",auditResponse);
 		return "status";
+		
+	}
+	
+	@GetMapping("/internalServerError")
+	public String internalError(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return "internalServerError";
 		
 	}
 	

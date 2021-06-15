@@ -29,7 +29,7 @@ public class GlobalErrorHandler {
 	@ExceptionHandler(TokenExpiredException.class)
 	public ResponseEntity<CustomErrorResponse> handleTokenNotFoundexception(TokenExpiredException ex) {
 		CustomErrorResponse response = new CustomErrorResponse(LocalDateTime.now(), HttpStatus.NOT_FOUND,
-				"token expired", ex.getMessage());
+				"the token is expired and not valid anymore", ex.getMessage());
 
 		return new ResponseEntity<CustomErrorResponse>(response, HttpStatus.NOT_FOUND);
 	}

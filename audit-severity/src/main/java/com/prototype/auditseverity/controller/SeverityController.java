@@ -76,7 +76,7 @@ public class SeverityController {
 			return responseEntity;
 		}
 		else {
-			responseEntity= new ResponseEntity<String>("token expired",HttpStatus.FORBIDDEN);
+			responseEntity= new ResponseEntity<String>("the token is expired and not valid anymore",HttpStatus.FORBIDDEN);
 			return responseEntity;
 		}
 

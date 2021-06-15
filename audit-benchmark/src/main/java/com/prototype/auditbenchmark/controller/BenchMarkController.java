@@ -29,7 +29,7 @@ public class BenchMarkController {
 
 			responseEntity = new ResponseEntity<List<BenchMark>>(marksList, HttpStatus.OK);
 		} else {
-			responseEntity = new ResponseEntity<String>("token expired", HttpStatus.FORBIDDEN);
+			responseEntity = new ResponseEntity<String>("the token is expired and not valid anymore", HttpStatus.FORBIDDEN);
 			return responseEntity;
 		}
 		return responseEntity;

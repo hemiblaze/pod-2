@@ -16,12 +16,12 @@
 <title>Project Details - Audit Management System</title>
 <style>
 body {
-	background:orange;
+	background: orange;
 	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 form {
-	background:white;
+	background: white;
 }
 
 h1 {
@@ -30,22 +30,12 @@ h1 {
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">AMS</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarText" aria-controls="navbarText"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarText">
-
-			<span class="navbar-text float-right"> <a href="/logout">Logout</a>
-			</span>
-		</div>
-	</nav>
+	<%@ include file="nav.jsp"%>
 	<div class="container">
-       
-		<h1 class="m-3 text-center display-4" style="color:black"><strong>PROJECT DETAILS</strong></h1>
+
+		<h1 class="m-3 text-center display-4" style="color: black">
+			<strong>PROJECT DETAILS</strong>
+		</h1>
 
 		<form:form action="/AuditCheckListQuestions"
 			modelAttribute="projectDetails" method="post"

@@ -62,8 +62,8 @@ public class AuthController {
 			res.setValid(false);
 			if (e.getMessage().contains("token expired"))
 				;
-			response = new ResponseEntity<String>("token expired", HttpStatus.FORBIDDEN);
-			if (e.getMessage().contains("auth failed"))
+			response = new ResponseEntity<String>("the token is expired and not valid anymore", HttpStatus.FORBIDDEN);
+			if (e.getMessage().contains("Authentication Failed. Username or Password not valid"))
 				response = new ResponseEntity<String>("auth failed", HttpStatus.FORBIDDEN);
 			response = new ResponseEntity<>(res, HttpStatus.FORBIDDEN);
 			return response;

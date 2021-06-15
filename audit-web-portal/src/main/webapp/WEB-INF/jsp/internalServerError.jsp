@@ -16,7 +16,7 @@
 <title>internal server error</title>
 <style>
 body {
-	background:orange;
+	background: orange;
 	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -26,28 +26,18 @@ h1 {
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">AMS</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarText" aria-controls="navbarText"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarText">
-
-			<span class="navbar-text float-right"> <a href="/logout">Logout</a>
-			</span>
-		</div>
-	</nav>
+	<%@ include file="nav.jsp"%>
 	<div class="container">
-       
-		<h1 class="m-5 text-center display-3" style="color:black">Internal Server Error</h1>
+
+		<h1 class="m-5 text-center display-3" style="color: black">Internal
+			Server Error</h1>
 		<div class="container">
-		<p class="text-center">Something went wrong please login again !!</p>
-		<a class="btn btn-success text-center" href="http://localhost:8084/login-page" style="margin-left:500px;">login</a>
+			<p class="text-center">Something went wrong please login again !!</p>
+			<a class="btn btn-success text-center"
+				href="http://localhost:8084/login-page" style="margin-left: 500px;">login</a>
 		</div>
 
-		
+
 	</div>
 
 

@@ -19,7 +19,7 @@
 <title>Audit Questions</title>
 <style>
 body {
-	background: linear-gradient(to right, #1d976c, #93f9b9);
+	background: linear-gradient(to right, orange, orange);
 	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -33,23 +33,13 @@ h3 {
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">AMS</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarText" aria-controls="navbarText"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarText">
-
-			<span class="navbar-text float-right"> <a href="/logout">Logout</a>
-			</span>
-		</div>
-	</nav>
+	<%@ include file="nav.jsp"%>
 	<div class="container">
 
-		<h3 class="m-4 display-4 text-center">${auditType.getAuditType()} Audit Questions</h3>
-		
+		<h3 class="m-4 display-4 text-center">${auditType.getAuditType()}
+			Audit Questions</h3>
+<%-- 			<c:choose>
+		<c:when test="${view == true}"> --%>
 		<form:form action="/questions" method="post"
 			modelAttribute="questions" class="px-5 py-4 border rounded">
 			<c:forEach var="emp" items="${questions.questionsEntity}"
@@ -62,29 +52,35 @@ h3 {
 				<form:hidden path="questionsEntity[${status.index}].auditType"
 					value="${emp.auditType }" />
 				<div class="input-group">
-				<div class="input-group-prepend">
-							<div class="input-group-text">
-								<form:radiobutton path="questionsEntity[${status.index}].response"
-									value="YES" required="required"/>
-							</div>
-				</div>
-				<form:label class="form-control" path="questionsEntity[${status.index}].response">Yes</form:label>
-				
-				<div class="input-group-prepend">
-							<div class="input-group-text">
-								<form:radiobutton path="questionsEntity[${status.index}].response"
-								value="NO" />
-							</div>
-				</div>
-				<form:label class="form-control" path="questionsEntity[${status.index}].response">No</form:label>
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<form:radiobutton
+								path="questionsEntity[${status.index}].response" value="YES"
+								required="required" />
+						</div>
+					</div>
+					<form:label class="form-control"
+						path="questionsEntity[${status.index}].response">Yes</form:label>
 
-				
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<form:radiobutton
+								path="questionsEntity[${status.index}].response" value="NO" />
+						</div>
+					</div>
+					<form:label class="form-control"
+						path="questionsEntity[${status.index}].response">No</form:label>
+
+
 				</div>
 
 			</c:forEach>
-			<input type="Submit" value="Submit" class="btn btn-primary btn-block mt-3" />
+			<input type="Submit" value="Submit"
+				class="btn btn-primary btn-block mt-3" />
 
 		</form:form>
+<%-- 		</c:when>
+		</c:choose> --%>
 	</div>
 
 
